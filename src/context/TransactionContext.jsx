@@ -102,7 +102,7 @@ export const TransactionsProvider = ({ children }) => {
 			setCurrentAccount(accounts[0]);
 			const timeOut = setTimeout(() => {
 				window.location.reload();
-			}, 10000);
+			}, 1000);
 
 			return () => clearTimeout(timeOut);
 		} catch (error) {
