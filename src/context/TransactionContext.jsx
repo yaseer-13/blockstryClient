@@ -100,11 +100,11 @@ export const TransactionsProvider = ({ children }) => {
 			const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
 			toast.success('Wallet connected');
 			setCurrentAccount(accounts[0]);
-			// const timeOut = setTimeout(() => {
-			// 	window.location.reload();
-			// }, 10000);
+			const timeOut = setTimeout(() => {
+				window.location.reload();
+			}, 10000);
 
-			// return () => clearTimeout(timeOut);
+			return () => clearTimeout(timeOut);
 		} catch (error) {
 			console.error('No ethereum object');
 
