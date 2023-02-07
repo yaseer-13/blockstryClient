@@ -61,12 +61,11 @@ export const TransactionsProvider = ({ children }) => {
 	const checkIfWalletIsConnect = async () => {
 		try {
 			if (!ethereum) {
-				toast.error('Please install MetaMask.');
+				toast.error('Please install Metamask');
 			}
 
 			const accounts = await ethereum.request({ method: 'eth_accounts' });
 			if (accounts.length) {
-				toast.success('Wallet connected');
 				setCurrentAccount(accounts[0]);
 				getAllTransactions();
 			} else {
@@ -99,13 +98,13 @@ export const TransactionsProvider = ({ children }) => {
 			}
 
 			const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-			setCurrentAccount(accounts[0]);
 			toast.success('Wallet connected');
-			const timeOut = setTimeout(() => {
-				window.location.reload();
-			}, 1000);
+			setCurrentAccount(accounts[0]);
+			// const timeOut = setTimeout(() => {
+			// 	window.location.reload();
+			// }, 10000);
 
-			return () => clearTimeout(timeOut);
+			// return () => clearTimeout(timeOut);
 		} catch (error) {
 			console.error('No ethereum object');
 
@@ -167,7 +166,6 @@ export const TransactionsProvider = ({ children }) => {
 		checkIfWalletIsConnect();
 		checkIfTransactionsExists();
 	}, [transactionCount]);
-
 	return (
 		<TransactionContext.Provider
 			value={{
